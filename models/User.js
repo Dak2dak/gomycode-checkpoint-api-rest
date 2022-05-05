@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 let db;
 async function dbConnect() {
     console.log(">>mongo");
-    const url = "mongodb://127.0.0.1:27017/dbCheckpoint";
+    const url = "mongodb://127.0.0.1:27017/dbApiRest";
     mongoose.connect(url, { useNewUrlParser: true});
     db = mongoose.connection;
     db.once("open", (_) => {
@@ -35,7 +35,7 @@ const userSchema = new Schema({
 });
 
 //========== CREATING A USER MODEL ==============
-const User = mongoose.model('User', userSchema, "");
+const User = mongoose.model('User', userSchema, "user");
 // mongoose.model('model', schema, collection)
 
 
