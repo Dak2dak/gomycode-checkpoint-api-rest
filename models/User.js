@@ -19,7 +19,7 @@ async function dbConnect() {
 
 dbConnect();
 
-//========= DEFINING A USER SCHEMA  =============
+//========= DEFINING A USER SCHEMA  ===============
 const userSchema = new Schema({
     First_name: {
         type: String,
@@ -36,8 +36,9 @@ const userSchema = new Schema({
     CreatedAt: Date
 });
 
-//========== CREATING A USER MODEL ==============
+//========== CREATING A USER MODEL ================
 const User = mongoose.model('User', userSchema, "user");
 // mongoose.model('model', schema, collection)
 
 
+// module.exports = mongoose.model('Email', emailSchema)
