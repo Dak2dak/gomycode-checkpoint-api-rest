@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 //========== CONNECTING TO THE DATABASE ===========
 let db;
 async function dbConnect() {
-    console.log(">>postman");
+    console.log(">>mongo");
     const url = "mongodb://127.0.0.1:27017/dbCheckpoint";
     mongoose.connect(url, { useNewUrlParser: true});
     db = mongoose.connection;
