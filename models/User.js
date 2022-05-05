@@ -21,17 +21,19 @@ dbConnect();
 
 //========= DEFINING A USER SCHEMA  =============
 const userSchema = new Schema({
-    first_name: {
+    First_name: {
         type: String,
         required: true
     },
-    last_name: {
+    Last_name: {
         type: String,
         required: true
     },
-    middle_name: { type: String },
-    age: Number,
-    placeOfBirth: String
+    Middle_name: { type: String },
+    Age: Number,
+    Email: String,
+    PlaceOfBirth: String,
+    CreatedAt: Date
 });
 
 //========== CREATING A USER MODEL ==============
