@@ -34,7 +34,7 @@ app.put('/User/:id', (req, res) => {
     res.json(User[index])
 })
 //===================  REMOVING A USER BY ID ===================
-app.delete('/user/:id', (req, res) => {
+app.delete('/User/:id', (req, res) => {
     let user_id = parseInt(req.params.id)
     let index = User.findIndex((user) => user.id === user_id)
     User.splice(index, 1)
