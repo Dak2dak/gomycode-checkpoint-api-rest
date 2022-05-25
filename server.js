@@ -1,47 +1,55 @@
-require('dotenv').config()
-// console.log(process.env)
-const express = require('express')
-const router = express.Router()
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+require('dotenv').config();
+const port = process.env.SERVER_PORT;
+const User = require('./models/User.js');
+const bodyParser = require("body-parser");
 
-//============================= CREATING ROUTINGS ==================================
+
+
+// Creating a middleware
+app.use('/', bodyParser.json());
+
+
 
 //=================== RETURNING ALL USERS ======================
-app.get('/', (req, res) => {
-    res.send('')
+app.get('/Users', (req, res) => {
+    User.find().then((Users) => 
+        res.json(Users))
 })
-
-
-// When you are defining the routes that have a dynamically changing piece, 
-// you simply put a placeholder variable name (beginning with a :), 
-// and Express will put that variable on the req.params object from the incoming request:
-
-// app.get("/car/make/:makeId", (req, res) => {
-//     console.log(req.params);
-//     // Look up the car make with the id of req.params.makeId in the database
-//     // res.send(that car make);
-// })
-
 //=================== ADDING A NEW USER TO THE DATABASE ========
-app.post('/', (req, res) => {
-    res.send('')
+app.post('/User', (req, res) => {
+    User.create(req.body).then((User) => 
+        res.json(
+            {
+                message: "user added successfully"
+            }
+        ))
 })
-
 //=================== EDITING A USER BY ID =====================
-app.put('/', (req, res) => {
-    res.send('')
+app.put('/User/:id', (req, res) => {
+    let user_id = parseInt(req.params.id)
+    let index = User.findIndex((user) => user.id === user_id)
+    User[index] = req.body.User
+    res.json(User[index])
 })
-
 //===================  REMOVING A USER BY ID ===================
-app.delete('/', (req, res) => {
-    res.send('')
+app.delete('/user/:id', (req, res) => {
+    let user_id = parseInt(req.params.id)
+    let index = User.findIndex((user) => user.id === user_id)
+    User.splice(index, 1)
+    res.json(User)
 })
+//========================= END ROUTING ========================
 
-// server's listening
+
+
+
+// server is listening
 app.listen(port, (err) => {
     if(err) {
         console.log('server not running')
     }
-    else console.log(`server running on port ${port}`)
+    else console.log(`server running on port ${port}...`)
 });
+
